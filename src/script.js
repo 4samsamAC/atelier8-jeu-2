@@ -27,3 +27,22 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
   }
+
+function createGame(cardCount = 8) { // againe ill maybe do a class of it
+    const deck = createDeck();
+  
+    const pairCount = cardCount / 2;
+  
+    const shuffledDeck = shuffle(deck);
+  
+    const selectedCards = shuffledDeck.slice(0, pairCount);
+  
+    const gameCards = [...selectedCards, ...selectedCards];
+  
+    return shuffle(gameCards).map((card, index) => ({
+      id: index,
+      symbol: card.symbol,
+      flipped: false,
+      matched: false
+    }));
+  }
