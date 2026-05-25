@@ -26,6 +26,7 @@ function shuffle(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+    return array;
 }
 
 function createGame(cardCount = 8) { // againe ill maybe do a class of it
