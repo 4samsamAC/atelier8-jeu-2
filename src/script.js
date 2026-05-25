@@ -20,3 +20,10 @@ function createDeck() { // maybe ill do an class for the deck and cards later fo
 
   return deck;
 }
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
