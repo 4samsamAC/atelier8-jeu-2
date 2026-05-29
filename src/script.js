@@ -108,3 +108,11 @@ function resetTurn() {
     secondCard = null;
     lockBoard = false;
 }
+
+function checkWin() {
+    const won = cards.every(card => card.matched);
+  
+    if (won) {
+      alert("Bravo !");
+    }
+}
