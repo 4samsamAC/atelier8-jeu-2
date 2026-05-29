@@ -54,3 +54,24 @@ let firstCard = null;
 let secondCard = null;
 
 let lockBoard = false;
+
+function flipCard(cardId) {
+    if (lockBoard) return;
+  
+    const card = cards.find(c => c.id === cardId);
+  
+    if (card.flipped || card.matched) return;
+  
+    card.flipped = true;
+  
+    updateUI();
+  
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+  
+    secondCard = card;
+  
+    checkMatch();
+  }
