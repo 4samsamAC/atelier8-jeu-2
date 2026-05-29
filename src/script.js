@@ -74,4 +74,31 @@ function flipCard(cardId) {
     secondCard = card;
   
     checkMatch();
-  }
+}
+
+function checkMatch() {
+    lockBoard = true;
+  
+    const isMatch = firstCard.symbol === secondCard.symbol;
+  
+    if (isMatch) {
+      firstCard.matched = true;
+      secondCard.matched = true;
+  
+      resetTurn();
+  
+      checkWin();
+  
+    } else {
+  
+      setTimeout(() => {
+        firstCard.flipped = false;
+        secondCard.flipped = false;
+  
+        resetTurn();
+  
+        updateUI();
+  
+      }, 1000);
+    }
+}
