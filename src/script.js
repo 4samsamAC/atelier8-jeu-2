@@ -102,3 +102,9 @@ function checkMatch() {
       }, 1000);
     }
 }
+
+function resetTurn() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+}
