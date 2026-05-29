@@ -9,7 +9,28 @@
 </head>
 
 <body>
-    <div id="game"></div>
+
+    <header>
+        <h1>Memory Cards</h1>
+
+        <div class="controls">
+            <select id="difficulty">
+                <option value="easy">Facile (8)</option>
+                <option value="medium">Moyen (16)</option>
+                <option value="hard">Difficile (24)</option>
+            </select>
+
+            <button id="restartBtn">
+                Nouvelle partie
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="game" class="game"></div>
+
+    </main>
 
     <script src="src/js/cards.js"></script>
     <script src="src/js/game.js"></script>
