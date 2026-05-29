@@ -17,29 +17,6 @@ function createGame(cardCount = 8) { // againe ill maybe do a class of it
     }));
 }
 
-
-function flipCard(cardId) {
-    if (lockBoard) return;
-  
-    const card = cards.find(c => c.id === cardId);
-  
-    if (card.flipped || card.matched) return;
-  
-    card.flipped = true;
-  
-    updateUI();
-  
-    if (!firstCard) {
-      firstCard = card;
-      return;
-    }
-  
-    secondCard = card;
-  
-    checkMatch();
-}
-
-
 function checkMatch() {
     lockBoard = true;
   
@@ -80,3 +57,19 @@ function checkWin() {
       alert("Bravo !");
     }
 }
+
+function startGame(difficulty) {
+    const cardCount = difficulties[difficulty];
+  
+    cards = createGame(cardCount);
+  
+    resetTurn();
+  
+    updateUI();
+}
+
+const difficulties = { // ill see for a custome one
+    easy: 8,
+    medium: 16,
+    hard: 24
+};
