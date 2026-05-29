@@ -36,10 +36,9 @@
     <script>
         
         const restartBtn = document.getElementById("restartBtn");
-        const difficultyRadio = document.getElementById("difficulty");
 
         restartBtn.addEventListener("click", btn => {
-            startGame(difficulty[difficultyRadio]);
+            startGame(difficulty.value);
         })
 
     </script>

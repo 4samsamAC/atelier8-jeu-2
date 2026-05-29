@@ -1,12 +1,6 @@
 const suits = ["♠", "♥", "♦", "♣"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
-const difficulties = { // ill see for a custome one
-    easy: 8,
-    medium: 16,
-    hard: 24
-};
-
 let firstCard = null;
 let secondCard = null;
 
@@ -34,12 +28,23 @@ function shuffle(array) {
     return array;
 }
 
-function startGame(difficulty) {
-    const cardCount = difficulties[difficulty];
+function flipCard(cardId) {
+    if (lockBoard) return;
   
-    cards = createGame(cardCount);
+    const card = cards.find(c => c.id === cardId);
   
-    resetTurn();
+    if (card.flipped || card.matched) return;
+  
+    card.flipped = true;
   
     updateUI();
+  
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+  
+    secondCard = card;
+  
+    checkMatch();
 }
