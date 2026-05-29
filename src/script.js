@@ -47,3 +47,10 @@ function createGame(cardCount = 8) { // againe ill maybe do a class of it
         matched: false
     }));
 }
+
+let cards = createGame(8);
+
+let firstCard = null;
+let secondCard = null;
+
+let lockBoard = false;
