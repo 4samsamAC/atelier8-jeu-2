@@ -139,3 +139,13 @@ function updateUI() {
       game.appendChild(div);
     });
 }
+
+function startGame(difficulty) {
+    const cardCount = difficulties[difficulty];
+  
+    cards = createGame(cardCount);
+  
+    resetTurn();
+  
+    updateUI();
+}
