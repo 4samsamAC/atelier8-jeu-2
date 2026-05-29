@@ -7,6 +7,11 @@ const difficulties = { // ill see for a custome one
     hard: 24
 };
 
+let firstCard = null;
+let secondCard = null;
+
+let lockBoard = false;
+
 function createDeck() { // maybe ill do an class for the deck and cards later for now its make it
     const deck = [];
 
@@ -29,21 +34,12 @@ function shuffle(array) {
     return array;
 }
 
-function createGame(cardCount = 8) { // againe ill maybe do a class of it
-    const deck = createDeck();
-
-    const pairCount = cardCount / 2;
-
-    const shuffledDeck = shuffle(deck);
-
-    const selectedCards = shuffledDeck.slice(0, pairCount);
-
-    const gameCards = [...selectedCards, ...selectedCards];
-
-    return shuffle(gameCards).map((card, index) => ({
-        id: index,
-        symbol: card.symbol,
-        flipped: false,
-        matched: false
-    }));
+function startGame(difficulty) {
+    const cardCount = difficulties[difficulty];
+  
+    cards = createGame(cardCount);
+  
+    resetTurn();
+  
+    updateUI();
 }
