@@ -47,3 +47,105 @@ function createGame(cardCount = 8) { // againe ill maybe do a class of it
         matched: false
     }));
 }
+
+let firstCard = null;
+let secondCard = null;
+
+let lockBoard = false;
+
+function flipCard(cardId) {
+    if (lockBoard) return;
+  
+    const card = cards.find(c => c.id === cardId);
+  
+    if (card.flipped || card.matched) return;
+  
+    card.flipped = true;
+  
+    updateUI();
+  
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+  
+    secondCard = card;
+  
+    checkMatch();
+}
+
+function checkMatch() {
+    lockBoard = true;
+  
+    const isMatch = firstCard.symbol === secondCard.symbol;
+  
+    if (isMatch) {
+      firstCard.matched = true;
+      secondCard.matched = true;
+  
+      resetTurn();
+  
+      checkWin();
+  
+    } else {
+  
+      setTimeout(() => {
+        firstCard.flipped = false;
+        secondCard.flipped = false;
+  
+        resetTurn();
+  
+        updateUI();
+  
+      }, 1000);
+    }
+}
+
+function resetTurn() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+}
+
+function checkWin() {
+    const won = cards.every(card => card.matched);
+  
+    if (won) {
+      alert("Bravo !");
+    }
+}
+
+function updateUI() {
+    const game = document.getElementById("game");
+  
+    game.innerHTML = "";
+  
+    cards.forEach(card => {
+      const div = document.createElement("div");
+  
+      div.className = "card";
+  
+      div.textContent =
+        card.flipped || card.matched
+          ? card.symbol
+          : "?";
+  
+      div.addEventListener("click", () => {
+        flipCard(card.id);
+      });
+  
+      game.appendChild(div);
+    });
+}
+
+function startGame(difficulty) {
+    const cardCount = difficulties[difficulty];
+  
+    cards = createGame(cardCount);
+  
+    resetTurn();
+  
+    updateUI();
+}
+
+startGame(difficulties["easy"]);
